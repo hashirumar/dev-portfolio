@@ -1,6 +1,6 @@
 import Author from "@/components/blog-author";
 import { CTA } from "@/components/sections/cta";
-import { getPost } from "@/lib/blog";
+import { getPost, getProject } from "@/lib/blog";
 import { siteConfig } from "@/lib/config";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -12,13 +12,21 @@ export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata | undefined> {
   const params = await props.params;
-  let post = await getPost(params.slug);
+  
+  // Try to get as project first, fallback to blog post
+  let content;
+  try {
+    content = await getProject(params.slug);
+  } catch {
+    content = await getPost(params.slug);
+  }
+  
   let {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata;
+  } = content.metadata;
 
   return {
     title,
@@ -28,12 +36,8 @@ export async function generateMetadata(props: {
       description,
       type: "article",
       publishedTime,
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      images: [
-        {
-          url: image,
-        },
-      ],
+      url: `${siteConfig.url}/blog/${content.slug}`,
+      images: [{ url: image }],
     },
     twitter: {
       card: "summary_large_image",
@@ -46,13 +50,25 @@ export async function generateMetadata(props: {
 
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await props.params;
-  const post = await getPost(params.slug);
-  if (!post) {
+  
+  // Try to get as project first, fallback to blog post
+  let content;
+  try {
+    content = await getProject(params.slug);
+  } catch {
+    try {
+      content = await getPost(params.slug);
+    } catch {
+      notFound();
+    }
+  }
+
+  if (!content) {
     notFound();
   }
+
   return (
     <section id="blog">
       <script
@@ -62,14 +78,14 @@ export default async function Page(props: {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${siteConfig.url}${post.metadata.image}`
-              : `${siteConfig.url}/blog/${post.slug}/opengraph-image`,
-            url: `${siteConfig.url}/blog/${post.slug}`,
+            headline: content.metadata.title,
+            datePublished: content.metadata.publishedAt,
+            dateModified: content.metadata.publishedAt,
+            description: content.metadata.summary,
+            image: content.metadata.image
+              ? `${siteConfig.url}${content.metadata.image}`
+              : `${siteConfig.url}/blog/${content.slug}/opengraph-image`,
+            url: `${siteConfig.url}/blog/${content.slug}`,
             author: {
               "@type": "Person",
               name: siteConfig.name,
@@ -83,42 +99,60 @@ export default async function Page(props: {
             <div className="mb-8 w-full h-64 bg-muted animate-pulse rounded-lg"></div>
           }
         >
-          {post.metadata.image && (
+          {content.metadata.image && (
             <div className="mb-8">
               <Image
                 width={1920}
                 height={1080}
-                src={post.metadata.image}
-                alt={post.metadata.title}
+                src={content.metadata.image}
+                alt={content.metadata.title}
                 className="w-full h-auto rounded-lg border"
               />
             </div>
           )}
         </Suspense>
+        
         <div className="flex flex-col">
           <h1 className="title font-medium text-3xl tracking-tighter">
-            {post.metadata.title}
+            {content.metadata.title}
           </h1>
         </div>
+        
         <div className="flex justify-between items-center text-sm">
           <Suspense fallback={<p className="h-5" />}>
             <div className="flex items-center space-x-2">
-              <time dateTime={post.metadata.publishedAt} className="text-sm">
-                {formatDate(post.metadata.publishedAt)}
+              <time dateTime={content.metadata.publishedAt} className="text-sm">
+                {formatDate(content.metadata.publishedAt)}
               </time>
             </div>
           </Suspense>
         </div>
+
+        {/* Tech Stack Display (only for projects) */}
+        {content.metadata.tech && content.metadata.tech.length > 0 && (
+          <div className="flex flex-wrap gap-2 py-4">
+            {content.metadata.tech.map((tech: string) => (
+              <span
+                key={tech}
+                className="inline-flex items-center rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-1 font-mono text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+        
         <div className="flex items-center space-x-2">
           <Author
-            twitterUsername={post.metadata.author}
-            name={post.metadata.author}
-            image={"/author.jpg"}
+            twitterUsername={content.metadata.author}
+            name={content.metadata.author}
+            image={"/projects/hashirpfp.jpg"}
           />
         </div>
+        
         <article
           className="prose dark:prose-invert mx-auto max-w-full"
-          dangerouslySetInnerHTML={{ __html: post.source }}
+          dangerouslySetInnerHTML={{ __html: content.source }}
         ></article>
       </div>
       <CTA />

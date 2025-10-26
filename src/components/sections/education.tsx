@@ -12,7 +12,7 @@ const education = [
     duration: "2020 - 2024",
     grade: "Completed",
     type: "Bachelor's Degree",
-    icon: <GraduationCap className="h-5 w-5" />,
+    icon: <GraduationCap className="h-5 w-5 text-zinc-400" />,
     coursework: [
       "Machine Learning",
       "Deep Learning",
@@ -28,7 +28,7 @@ const education = [
     duration: "2019 - 2020",
     grade: "85%",
     type: "Higher Secondary",
-    icon: <BookOpen className="h-5 w-5" />,
+    icon: <BookOpen className="h-5 w-5 text-zinc-400" />,
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const education = [
     duration: "2017 - 2018",
     grade: "85%",
     type: "Secondary",
-    icon: <Award className="h-5 w-5" />,
+    icon: <Award className="h-5 w-5 text-zinc-400" />,
   },
 ];
 
@@ -59,9 +59,10 @@ function EducationCard({ edu }: { edu: typeof education[0] }) {
                 {edu.institution}
               </p>
             </div>
-            <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
-              {edu.type}
-            </span>
+            <span className="px-3 py-1 text-xs font-medium rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-400 border border-zinc-300 dark:border-zinc-800">
+  {edu.type}
+</span>
+
           </div>
 
           <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">

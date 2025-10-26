@@ -19,7 +19,7 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
-      <Logos />
+      {/* <Logos /> */}
       <Blog />
       <Examples />
       <Experience />
@@ -30,7 +30,7 @@ export default function Home() {
         {/* <Statistics /> */}
       <Testimonials />
       {/* <Pricing /> */}
-      <Community />
+      {/* <Community /> */}
       
       <CTA />
       <Footer />

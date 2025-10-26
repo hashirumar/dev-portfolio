@@ -94,3 +94,82 @@ async function getAllPosts(dir: string) {
 export async function getBlogPosts() {
   return getAllPosts(path.join(process.cwd(), "content"));
 }
+
+// Add Project type
+export type Project = Post & {
+  tech?: string[];
+};
+
+// Update parseFrontmatter to handle tech array
+function parseFrontmatterWithTech(fileContent: string) {
+  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  let match = frontmatterRegex.exec(fileContent);
+  
+  // Check if match exists
+  if (!match || !match[1]) {
+    throw new Error("Invalid frontmatter format. Make sure your MDX file starts with --- and ends with ---");
+  }
+  
+  let frontMatterBlock = match[1];
+  let content = fileContent.replace(frontmatterRegex, "").trim();
+  let frontMatterLines = frontMatterBlock.trim().split("\n");
+  let metadata: Partial<Project> = {};
+
+  frontMatterLines.forEach((line) => {
+    let [key, ...valueArr] = line.split(": ");
+    let value = valueArr.join(": ").trim();
+    value = value.replace(/^['"](.*)['"]$/, "$1");
+    
+    // Handle tech array
+    if (key.trim() === "tech") {
+      metadata.tech = value
+        .replace(/^\[|\]$/g, "")
+        .split(",")
+        .map((tech) => tech.trim().replace(/['"]/g, ""));
+    } else {
+      metadata[key.trim() as keyof Project] = value as any;
+    }
+  });
+
+  return { data: metadata as Project, content };
+}
+
+// Get single project
+export async function getProject(slug: string) {
+  const filePath = path.join("content/projects", `${slug}.mdx`);
+  const source = fs.readFileSync(filePath, "utf-8");
+  const { content: rawContent, data: metadata } = parseFrontmatterWithTech(source);
+  const content = await markdownToHTML(rawContent);
+  const defaultImage = `${siteConfig.url}/og?title=${encodeURIComponent(
+    metadata.title
+  )}`;
+  return {
+    source: content,
+    metadata: {
+      ...metadata,
+      image: metadata.image || defaultImage,
+    },
+    slug,
+  };
+}
+
+// Get all projects
+async function getAllProjects(dir: string) {
+  const mdxFiles = getMDXFiles(dir);
+  return Promise.all(
+    mdxFiles.map(async (file) => {
+      const slug = path.basename(file, path.extname(file));
+      const { metadata, source } = await getProject(slug);
+      return {
+        ...metadata,
+        slug,
+        source,
+      };
+    })
+  );
+}
+
+export async function getProjects() {
+  return getAllProjects(path.join(process.cwd(), "content/projects"));
+}
+

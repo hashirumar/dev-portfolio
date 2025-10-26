@@ -24,14 +24,17 @@ export function Header() {
         </Link>
         <div className="hidden lg:block">
           <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-8 text-primary-foreground rounded-lg group tracking-tight font-medium"
-            )}
-          >
-            {siteConfig.cta}
-          </Link>
+  href="/Hashir-AiMERN.pdf"
+  download
+  className={cn(
+    buttonVariants({ variant: "default" }),
+    "h-8 rounded-lg bg-zinc-50 dark:bg-zinc-900 ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-400 group tracking-tight font-medium px-4 flex items-center justify-center"
+  )}
+>
+  Resume
+</Link>
+
+
         </div>
         <div className="mt-2 cursor-pointer block lg:hidden">
           <MobileDrawer />

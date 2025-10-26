@@ -15,17 +15,18 @@ function HeroPill() {
   return (
     <motion.a
       href="/blog/introducing-dev-ai"
-      className="flex w-auto items-center rounded-full bg-primary/20 px-2 py-1 ring-1 ring-accent whitespace-pre"
+      className="flex w-auto items-center rounded-full bg-zinc-50 dark:bg-zinc-900 px-2 py-1 ring-1 ring-zinc-300 dark:ring-zinc-800 whitespace-pre"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <p className="text-xs font-medium text-primary sm:text-sm">
+      <p className="text-xs font-medium text-zinc-400 sm:text-sm">
         I'm Hashir Umar
       </p>
     </motion.a>
   );
 }
+
 
 function HeroTitles() {
   return (
@@ -63,20 +64,21 @@ function HeroCTA() {
   return (
     <div className="relative ">
       <motion.div
-        className="flex w-full max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+        className="flex  flex-col items-center justify-center rounded-xl bg-zinc-50 dark:bg-zinc-900 ring-1 ring-zinc-300 dark:ring-zinc-800 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.8, ease }}
       >
-        <Link
-          href="/download"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background flex gap-2 rounded-lg"
-          )}
+        <a
+          href="https://www.linkedin.com/in/hashirumar-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            "px-2 py-3 sm:w-auto text-zinc-400 "
+          }
         >
           <h1>Lets work Together</h1>
-        </Link>
+        </a>
       </motion.div>
       <motion.p
         className="mt-3 text-sm text-muted-foreground text-left"
@@ -89,6 +91,7 @@ function HeroCTA() {
     </div>
   );
 }
+
 
 export function Hero() {
   return (

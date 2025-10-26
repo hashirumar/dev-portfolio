@@ -33,7 +33,7 @@ function ExperienceCard({ experience }: { experience: typeof experiences[0] }) {
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <Briefcase className="h-5 w-5 text-primary" />
+                <Briefcase className="h-5 w-5 text-zinc-400" />
                 <h3 className="text-xl font-semibold tracking-tight">
                   {experience.role}
                 </h3>
@@ -42,9 +42,10 @@ function ExperienceCard({ experience }: { experience: typeof experiences[0] }) {
                 {experience.company}
               </p>
             </div>
-            <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
-              {experience.type}
-            </span>
+            <span className="px-3 py-1 text-xs font-medium rounded-full bg-zinc-50 dark:bg-zinc-900 text-zinc-400 border border-zinc-300 dark:border-zinc-800">
+  {experience.type}
+</span>
+
           </div>
 
           <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
