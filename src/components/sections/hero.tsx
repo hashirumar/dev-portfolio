@@ -33,7 +33,7 @@ function HeroTitles() {
   return (
     <div className="flex w-full max-w-3xl items-center flex-col text-center overflow-hidden gap-4 ">
       <motion.h1
-        className="text-left text-4xl font-semibold leading-tighter text-foreground sm:text-5xl md:text-6xl tracking-tighter"
+        className="text-left text-3xl font-semibold leading-tighter text-foreground sm:text-4xl md:text-6xl tracking-tighter"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{ duration: 1, ease, staggerChildren: 0.2 }}
@@ -44,7 +44,7 @@ function HeroTitles() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease }}
         >
-          <h1 className="leading-[60px] dark:text-zinc-200 text-center">
+          <h1 className="leading-[40px] sm:leading-[60px] dark:text-zinc-200 text-center">
             Full Stack Dev <br/>& Prouct Designer
           </h1>
         </motion.span>

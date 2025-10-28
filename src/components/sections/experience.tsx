@@ -61,7 +61,7 @@ function ExperienceCard({ experience }: { experience: typeof experiences[0] }) {
         </div>
 
         {/* Content Section */}
-        <div className="p-12 flex-1">
+        <div className="p-6 sm:p-12 flex-1">
 
           {/* Achievements - 2 Column Layout */}
           <div className="mb-6">
