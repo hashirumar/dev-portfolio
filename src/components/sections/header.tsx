@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { Icons } from "@/components/icons";
 import { MobileDrawer } from "@/components/mobile-drawer";
 import { buttonVariants } from "@/components/ui/button";
@@ -19,7 +19,15 @@ export function Header() {
           title="brand-logo"
           className="relative mr-6 flex items-center space-x-2"
         >
-          <Icons.logo className="w-auto" />
+          {/* <Icons.logo className="w-auto" /> */}
+          <Image
+        src="/hashirdarkbglogo.png" // ✅ your file name in the /public folder
+        alt="Brand Logo"
+        width={40} // adjust size
+        height={40}
+        className="w-auto h-8" // optional Tailwind classes for responsive sizing
+        priority // ensures it loads quickly
+      />
           <span className="font-semibold text-lg">{siteConfig.name}</span>
         </Link>
         <div className="hidden lg:block">

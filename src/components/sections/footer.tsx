@@ -1,13 +1,21 @@
 import { Icons } from "@/components/icons";
 import { BorderText } from "@/components/ui/border-number";
 import { siteConfig } from "@/lib/config";
+import Image from "next/image";
 
 export function Footer() {
   return (
     <footer className="flex flex-col gap-y-5 rounded-lg px-7 py-5 container">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
-          <Icons.logo className="h-5 w-5" />
+          <Image
+                  src="/hashirdarkbglogo.png" // ✅ your file name in the /public folder
+                  alt="Brand Logo"
+                  width={40} // adjust size
+                  height={40}
+                  className="w-auto h-8" // optional Tailwind classes for responsive sizing
+                  priority // ensures it loads quickly
+                />
           <h2 className="text-lg font-bold text-foreground">
             {siteConfig.name}
           </h2>
@@ -40,10 +48,7 @@ export function Footer() {
           <p>{siteConfig.footer.bottomText}</p>
         </div>
       </div>
-      <BorderText
-        text={siteConfig.footer.brandText}
-        className="text-[clamp(3rem,15vw,10rem)] overflow-hidden font-mono tracking-tighter font-medium"
-      />
+      
     </footer>
   );
 }

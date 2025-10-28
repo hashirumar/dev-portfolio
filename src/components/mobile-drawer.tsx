@@ -21,26 +21,16 @@ export function MobileDrawer() {
         <IoMenuSharp className="text-2xl" />
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="px-6">
-          <Link
-            href="/"
-            title="brand-logo"
-            className="relative mr-6 flex items-center space-x-2"
-          >
-            <Icons.logo className="w-auto h-[40px]" />
-            <DrawerTitle>{siteConfig.name}</DrawerTitle>
-          </Link>
-          <DrawerDescription>{siteConfig.description}</DrawerDescription>
-        </DrawerHeader>
+        
         <DrawerFooter>
           <Link
-            href="#"
+            href="/Hashir-AiMERN.pdf"
             className={cn(
-              buttonVariants({ variant: "default" }),
-              "text-white rounded-full group"
-            )}
+    buttonVariants({ variant: "default" }),
+    "h-8 rounded-lg bg-zinc-50 dark:bg-zinc-900 ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-400 group tracking-tight font-medium px-4 flex items-center justify-center"
+  )}
           >
-            {siteConfig.cta}
+            Resume
           </Link>
         </DrawerFooter>
       </DrawerContent>

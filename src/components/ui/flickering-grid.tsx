@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 
-interface FlickeringGridProps {
+export interface FlickeringGridProps {
   squareSize?: number;
   gridGap?: number;
   flickerChance?: number;
@@ -18,6 +18,7 @@ interface FlickeringGridProps {
   className?: string;
 
   maxOpacity?: number;
+  isInView?: boolean;
 }
 
 const FlickeringGrid: React.FC<FlickeringGridProps> = ({

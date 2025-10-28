@@ -45,7 +45,9 @@ export function constructMetadata({
       type: "website",
       locale: "en_US",
     },
-    icons: "/favicon.ico",
+    icons: {
+  icon: "/hashirdarkbglogo.png",
+},
     metadataBase: new URL(siteConfig.url),
     authors: [
       {

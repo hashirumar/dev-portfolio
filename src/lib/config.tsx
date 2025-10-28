@@ -123,16 +123,16 @@ export const siteConfig = {
     socialLinks: [
       {
         icon: <Icons.github className="h-5 w-5" />,
-        url: "#",
+        url: "https://github.com/hashirumar",
       },
       {
         icon: <Icons.twitter className="h-5 w-5" />,
-        url: "#",
+        url: "www.linkedin.com/in/hashirumar-dev",
       },
     ],
     links: [
-      { text: "Pricing", url: "#" },
-      { text: "Contact", url: "#" },
+      { text: "Dribble", url: "https://dribbble.com/uiuxhashir" },
+      { text: "Behance", url: "https://www.behance.net/hashirumar1" },
     ],
     bottomText: "All rights reserved.",
     brandText: "AGENT SDK",
