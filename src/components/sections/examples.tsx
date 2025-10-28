@@ -11,7 +11,6 @@ const codeSnippets = {
 
 function Counter() {
   const [count, setCount] = useState(0);
-
   return (
     <div>
       <h1>Count: {count}</h1>
@@ -19,7 +18,6 @@ function Counter() {
     </div>
   );
 }
-
 export default Counter;
 `,
 

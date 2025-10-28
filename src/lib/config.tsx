@@ -12,7 +12,7 @@ export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
   name: "Hashir Umar",
-  description: "Create AI Agents with just a few lines of code.",
+  description: "I design and build end-to-end digital products — from intuitive interfaces to scalable backends.",
   cta: "Resume",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   keywords: [

@@ -20,7 +20,7 @@ function HeroPill() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <p className="text-xs font-medium text-zinc-400 sm:text-sm">
+      <p className="text-xs font-medium dark:text-zinc-400 sm:text-sm">
         I'm Hashir Umar
       </p>
     </motion.a>
@@ -43,18 +43,20 @@ function HeroTitles() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease }}
         >
-          <h1 className="leading-[60px] text-center">
+          <h1 className="leading-[60px] dark:text-zinc-200 text-center">
             Full Stack Dev <br/>& Prouct Designer
           </h1>
         </motion.span>
       </motion.h1>
       <motion.p
-        className="text-center max-w-xl leading-normal text-muted-foreground sm:text-lg sm:leading-normal text-balance"
+        className="text-center max-w-xl leading-normal dark:text-zinc-300 sm:text-lg sm:leading-normal text-balance"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8, ease }}
       >
-        {siteConfig.hero.description}
+      
+     I design and build end-to-end digital products from intuitive interfaces to scalable backends.
+
       </motion.p>
     </div>
   );
@@ -74,19 +76,19 @@ function HeroCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className={
-            "px-6 py-2 sm:w-auto text-zinc-400 "
+            "px-6 py-2 sm:w-auto dark:text-zinc-300 "
           }
         >
           <h1>Lets work Together</h1>
         </a>
       </motion.div>
       <motion.p
-        className="mt-3 text-sm text-muted-foreground text-center"
+        className="mt-3 text-[12px]  dark:text-zinc-400 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.0, duration: 0.8 }}
       >
-        {siteConfig.hero.ctaDescription}
+        Open to full-time opportunities
       </motion.p>
     </div>
   );
