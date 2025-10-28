@@ -58,9 +58,9 @@ export default function Home() {
 };
 
 function CodeCard() {
-  const [selected, setSelected] = useState("jsx");
+  const [selected, setSelected] = useState<keyof typeof codeSnippets>("jsx");
 
-  const tabs = [
+  const tabs: { id: keyof typeof codeSnippets; label: string }[] = [
     { id: "jsx", label: "React" },
     { id: "js", label: "JavaScript" },
     { id: "php", label: "PHP" },

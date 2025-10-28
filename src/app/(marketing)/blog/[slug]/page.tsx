@@ -38,6 +38,7 @@ export async function generateMetadata(props: {
       publishedTime,
       url: `${siteConfig.url}/blog/${content.slug}`,
       images: [{ url: image }],
+      
     },
     twitter: {
       card: "summary_large_image",
@@ -48,26 +49,31 @@ export async function generateMetadata(props: {
   };
 }
 
+interface BlogProjectMetadata {
+  image: string;
+  title: string;
+  publishedAt: string;
+  summary: string;
+  author: string;
+  slug: string;
+  tech?: string[];  // Add tech as optional string array
+}
+
+
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
   
   // Try to get as project first, fallback to blog post
-  let content;
-  try {
-    content = await getProject(params.slug);
-  } catch {
-    try {
-      content = await getPost(params.slug);
-    } catch {
-      notFound();
-    }
-  }
+  let content: { metadata: BlogProjectMetadata; slug: string; source: string };
 
-  if (!content) {
-    notFound();
-  }
+try {
+  content = await getProject(params.slug);
+} catch {
+  content = await getPost(params.slug);
+}
+
 
   return (
     <section id="blog">

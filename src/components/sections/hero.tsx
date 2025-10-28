@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+
 const ease = [0.16, 1, 0.3, 1];
 
 function HeroPill() {
@@ -21,7 +22,7 @@ function HeroPill() {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <p className="text-xs font-medium dark:text-zinc-400 sm:text-sm">
-        I'm Hashir Umar
+        I&apos;m Hashir Umar
       </p>
     </motion.a>
   );
