@@ -86,13 +86,13 @@ function CodeCard() {
           </button>
         ))}
         <div className="flex-1" />
-        <button
+        {/* <button
           className="ml-auto px-2 py-1 text-zinc-400 hover:text-amber-400 transition-colors"
           title="Star on GitHub"
           onClick={() => window.open("https://github.com/your-repo", "_blank")}
         >
           ★ 2,345
-        </button>
+        </button> */}
       </div>
       {/* Code display */}
       <div className="p-4 overflow-x-auto">
@@ -119,7 +119,7 @@ export function Examples() {
   return (
     <Section id="examples" title="Language">
       <div className="border-x border-t">
-        <div className="border py-12">
+        <div className="border py-12 px-2 sm:px-0">
           <CodeCard />
         </div>
       </div>
