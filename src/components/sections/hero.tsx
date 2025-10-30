@@ -45,7 +45,7 @@ function HeroTitles() {
           transition={{ duration: 0.8, delay: 0.5, ease }}
         >
           <h1 className="leading-[40px] sm:leading-[60px] dark:text-zinc-200 text-center">
-            Full Stack Dev <br/>& Prouct Designer
+            Full Stack Dev <br/>& Product Designer
           </h1>
         </motion.span>
       </motion.h1>

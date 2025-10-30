@@ -30,6 +30,9 @@ export function Header() {
       />
           <span className="font-semibold text-lg">{siteConfig.name}</span>
         </Link>
+        {/* <Link href="/ui-design" className="px-3 py-2 hover:text-primary font-medium">
+            UI Design
+          </Link> */}
         <div className="hidden lg:block">
           <Link
   href="/Hashir-AiMERN.pdf"
