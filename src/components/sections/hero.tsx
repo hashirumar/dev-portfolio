@@ -77,7 +77,7 @@ function HeroCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className={
-            "px-6 py-2 sm:w-auto dark:text-zinc-300 "
+            "px-6 py-2 sm:w-auto dark:text-zinc-300"
           }
         >
           <h1>Lets work Together</h1>
